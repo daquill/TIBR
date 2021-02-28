@@ -1,0 +1,24 @@
+palettes:
+  - name: global_palette
+    fixed-entries:
+      - color: {index: 0, r: 0, g: 0, b: 0}
+    images: automatic
+
+palette: global_palette
+converts:
+  - name: sprites
+    palette: global_palette 
+    # transparent-color-index: 1
+    images:
+      - addpersonplus.png
+      - PlayerAvatar.png
+      - stonebricktiletibr.png
+
+
+outputs:
+  - type: c
+    include-file: gfx.h
+    palettes:
+      - global_palette
+    converts:
+      - sprites
