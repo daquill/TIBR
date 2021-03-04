@@ -7,3 +7,5 @@ Create a thread here on github https://github.com/QuillPlayzYT/TI-Battle-Royale/
 Join my coding friends server @ https://discord.gg/bpCCGWA2mT  
 Join my discord server @ https://discord.gg/9a5khWwvjp  
 Subscribe and share to your friends on YT @ https://www.youtube.com/channel/UCoDZHouqIKPhkCpzaj3RaJQ
+
+Hello I broke this to show how git works (I think I can collaborate)
