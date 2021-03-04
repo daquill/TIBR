@@ -2,7 +2,7 @@
 # Makefile Options
 # ----------------------------
 
-NAME ?= DEMO
+NAME ?= BATROYAL
 ICON ?= icon.png
 DESCRIPTION ?= "CE C Toolchain Demo"
 COMPRESSED ?= NO
