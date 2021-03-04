@@ -1,17 +1,14 @@
-//Thanks to Alvajoy on cemetech for the new and furnished code of a alpha release 
-
-
-/*
- *--------------------------------------
- * Program Name:BATROYAL
- * Author: QuillPlayzyT
- * License: -
- * Description: Battle Royale for the TI 84 Plus CE
- *--------------------------------------
-*/
-
+/* Version History and Notes and Credits
 //Thanks to Alvajoy on cemetech for the new and furnished code of a alpha release
 //This New Build was made with the TI Project Builder
+
+
+
+
+
+
+
+*/
 
 /*
  *--------------------------------------
