@@ -2,7 +2,7 @@
 //Thanks to Alvajoy on cemetech for the new and furnished code of a alpha release
 //This New Build was made with the TI Project Builder
 
-
+//More will be added once I get home
 
 
 
@@ -91,6 +91,7 @@ void thegame(void)
                 if (kb_Data[7] & kb_Right) playerx++;
             }
 
+ while ((!(kb_Data[6] & kb_Clear)) 
  }
     
 }
