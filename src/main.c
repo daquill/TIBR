@@ -1,8 +1,16 @@
-/* Version History and Notes and Credits
-//Thanks to Alvajoy on cemetech for the new and furnished code of a alpha release
-//This New Build was made with the TI Project Builder
+/* Version History / Notes
+Thanks to Alvajoy on cemetech for the new and furnished code of a alpha release
+This New Build was made with the TI Project Builder
 */
+/* Credits
+KingDubDub for being a awesome friend and a great mentor
+QuillPlayzYT for being a awesome owner
+Zach (Ninjabob2220) 
 
+
+
+
+*/
 /*
  *--------------------------------------
  * Program Name:BATROYAL
@@ -28,7 +36,7 @@
 
 void main()
 {
-
+int screen = 0;
 
 
     gfx_Begin();
@@ -49,24 +57,27 @@ void main()
         gfx_SetTextFGColor(187);
         gfx_PrintStringXY("Pre Release 1.0",116,110);
         gfx_SetTextFGColor(147);
-        gfx_PrintStringXY("2nd To Login with your TIBR account ",40,120);
-        gfx_BlitBuffer();
-    // NEW RELEASE STARTS 
-    bool allowgamekp = false;
-    int playerx = 50;
-    int playery = 50;
-    gfx_Sprite(PlayerAvatar,playerx,playery);
-    kb_Scan();
-
-        if (allowgamekp)
+        gfx_PrintStringXY("2nd to Play",120,120);
+        if (kb_Data[1] & kb_Mode & screen = 0) {
+            gfx_SetTextFGColor(228);
+            gfx_PrintStringXY("BR PR 1.0",0,0);
+            gfx_SetTextFGColor(30);
+            gfx_PrintStringXY("Scenario Loader 1.0",0,10);
+            gfx_SetTextFGColor(40);
+            
+            while ((name = ti_DetectAny(&search_pos, search_string, &type)) != NULL)
             {
-                
-            if (kb_Data[7] & kb_Up & playery >= 240) playery++;
-                if (kb_Data[7] & kb_Down & playery <= 0) playery--;
-                if (kb_Data[7] & kb_Left & playerx <= 0) playerx--;
-                if (kb_Data[7] & kb_Right & playerx >= 320) playerx++;
-            }
-   // NEW RELEASE ENDS
+                    if (type == TI_APPVAR_TYPE)
+                    {
+            /* Print the name of the variable (Should be LibLoad) */
+            os_SetCursorPos(0, y);
+            os_PutStrFull(name);
+
+            y++;
+        }
+    }
+            
+        }
  } while (!(kb_Data[6] & kb_Clear));
 
     gfx_End();
