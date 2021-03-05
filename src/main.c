@@ -2,12 +2,6 @@
 //Thanks to Alvajoy on cemetech for the new and furnished code of a alpha release
 //This New Build was made with the TI Project Builder
 
-//More will be added once I get home
-
-
-
-
-
 */
 
 /*
@@ -26,14 +20,15 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
-// Remove this line once in VS Code or preferred IDE Editor #include "stonebricktiletibr.c"
-// Remove this line once in VS Code or preferred IDE Editor #include "stonebricktiletibr.h"
-// Add below line once in VS Code : I had to remove for that way it could compile
-// #include "gfx/gfx.h"
 
-void signinscreen()
+//These would normally be in the gfx folder but i didnt see that the TI Planet Project Builder had a file system
+#include "stonebricktiletibr.c"
+#include "stonebricktiletibr.h"
+#include "PlayerAvatar.c"
+#include "PlayerAvatar.h"
+
+void main()
 {
-    bool signinstatus = true;
 
 
 
@@ -56,42 +51,25 @@ void signinscreen()
         gfx_PrintStringXY("Pre Release 1.0",116,110);
         gfx_SetTextFGColor(147);
         gfx_PrintStringXY("2nd To Login with your TIBR account ",40,120);
-
-        if (signinstatus == 1) signinstatus = 2;
-
-        if(kb_Data[1] & kb_2nd && signinstatus == 0)
-        {
-            gfx_SetTextFGColor(147);
-            signinstatus = 1;
-        }
-
         gfx_BlitBuffer();
-
-    } while(!(kb_Data[6] & kb_Clear));
-
-    gfx_End();
-}
-void thegame(void)
-{
-    bool allowgamekp = true;
+    bool allowgamekp = false;
     int playerx = 50;
     int playery = 50;
- do {
-    
-    if (allowgamekp)
+    gfx_Sprite(PlayerAvatar,playerx,playery);
+    kb_Scan();
+
+        if (allowgamekp)
             {
-                kb_Scan();
+            //My mentor needs to help me with ! and apersands (&)    
+            if (kb_Data[7] & kb_Up & playery ! 240) playery++;
 
-                if (kb_Data[7] & kb_Up)   playery++;
+                if (kb_Data[7] & kb_Down & playery ! 0) playery--;
 
-                if (kb_Data[7] & kb_Down) playery--;
+                if (kb_Data[7] & kb_Left & playerx ! 0) playerx--;
 
-                if (kb_Data[7] & kb_Left) playerx--;
-
-                if (kb_Data[7] & kb_Right) playerx++;
+                if (kb_Data[7] & kb_Right & playerx ! 320) playerx++;
             }
+ } while (!(kb_Data[6] & kb_Clear));
 
- while ((!(kb_Data[6] & kb_Clear)) 
- }
-    
+    gfx_End();
 }
