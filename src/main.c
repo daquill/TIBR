@@ -1,14 +1,13 @@
 /* Version History and Notes and Credits
 //Thanks to Alvajoy on cemetech for the new and furnished code of a alpha release
 //This New Build was made with the TI Project Builder
-
 */
 
 /*
  *--------------------------------------
  * Program Name:BATROYAL
- * Author: QuillPlayzyT
- * License: -
+ * Author: QuillPlayzYT
+ * License: No Warranty goes for your calculator ; sorry
  * Description: Battle Royale for the TI 84 Plus CE
  *--------------------------------------
 */
@@ -52,6 +51,7 @@ void main()
         gfx_SetTextFGColor(147);
         gfx_PrintStringXY("2nd To Login with your TIBR account ",40,120);
         gfx_BlitBuffer();
+    // NEW RELEASE STARTS 
     bool allowgamekp = false;
     int playerx = 50;
     int playery = 50;
@@ -60,15 +60,13 @@ void main()
 
         if (allowgamekp)
             {
-            //My mentor needs to help me with ! and apersands (&)    
-            if (kb_Data[7] & kb_Up & playery ! 240) playery++;
-
-                if (kb_Data[7] & kb_Down & playery ! 0) playery--;
-
-                if (kb_Data[7] & kb_Left & playerx ! 0) playerx--;
-
-                if (kb_Data[7] & kb_Right & playerx ! 320) playerx++;
+                
+            if (kb_Data[7] & kb_Up & playery >= 240) playery++;
+                if (kb_Data[7] & kb_Down & playery <= 0) playery--;
+                if (kb_Data[7] & kb_Left & playerx <= 0) playerx--;
+                if (kb_Data[7] & kb_Right & playerx >= 320) playerx++;
             }
+   // NEW RELEASE ENDS
  } while (!(kb_Data[6] & kb_Clear));
 
     gfx_End();
