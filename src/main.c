@@ -21,7 +21,7 @@
 #include <fileioc.h>
 void main()
 {
-    int screen = 0;
+    bool loadscenarios = false;
 
 
     gfx_Begin();
@@ -36,7 +36,9 @@ void main()
         gfx_SetTextFGColor(147);
         gfx_PrintStringXY("2nd to Play",120,120);
 
-        if (kb_Data[1] & kb_Mode & screen == 0) {
+        if ((kb_Data[1] & kb_Mode) && !loadscenarios) 
+        {
+            
             gfx_SetTextFGColor(228);
             gfx_PrintStringXY("BR PR 1.0",0,0);
             gfx_SetTextFGColor(30);
@@ -49,18 +51,16 @@ void main()
             int8_t numcount = 0;
             while ((name = ti_DetectAny(&search_pos, "BRDAT", &type)) != NULL)
             {
-                    if (type == TI_APPVAR_TYPE)
-                    {
-            
-            os_SetCursorPos(0, y);
-            gfx_PrintStringXY(name,30,y);
-            gfx_PrintStringXY(">",0,y);
-            gfx_PrintStringXY(numcount,10,y);
+                if (type == TI_APPVAR_TYPE)
+                {
+                    gfx_PrintStringXY(name,30,y);
+                    gfx_PrintStringXY(">",0,y);
+                    gfx_PrintStringXY(numcount,10,y);
 
-            y+10;
-            numcount++;
-        }
-    }
+                    y+10;
+                    numcount++;
+                }
+            }
             
         }
 
