@@ -8,10 +8,6 @@ I am new to C
     -   IF YOU PLAN ON ADDING ON PLEASE PLEASE GIVE ME THE PROPER CREDIT
 ### Version History ###
     -   No Reviewable Version History could be found
-
-
-
-
 */
 #include <tice.h>
 #include <graphx.h>
@@ -22,9 +18,9 @@ I am new to C
 #include <stdio.h>
 #include <fileioc.h>
 #include "gfx/gfx.h"
- 
- 
- 
+
+
+
 void main()
 {
     uint8_t screen = 1;
@@ -39,13 +35,13 @@ void main()
     gfx_SetDrawBuffer();
         do {
             kb_Scan;
-            
+
             if (screen == 1) {
             gfx_SetTextFGColor(228);
             gfx_Sprite_NoClip(PlayerAvatar,playerx,playery);
             gfx_Sprite_NoClip(treetibr,randtreex,randtreey);
 
-            
+
                 if (kb_Data[7] & kb_Left)
                 {
                     playerx--;
@@ -62,15 +58,15 @@ void main()
                 {
                     playery++;
                 }
-                
-                if (kb_Data[6] & kb_Clear) 
+
+                if (kb_Data[6] & kb_Clear)
                 {
                     screen = 2;
                     menuid = 1;
                 }
             }
-            
-           
+
+
                 if (screen == 2)
                 {
                     gfx_FillScreen(32);
@@ -84,24 +80,33 @@ void main()
                     gfx_PrintStringXY("Settings - Coming Soon",131,121);
                     gfx_FillRectangle_NoClip(130,140,80,10);
                     gfx_PrintStringXY("Press Clear to Quit TIBR",131,141);
+                    gfx_SetColor(254);
+                    gfx_Circle(100,100,10);
+                    gfx_Circle(100,120,10);
+
+
                     if (kb_Data[7] & kb_Down && menuid == 1)
                     {
                         menuid = 2;
+                        gfx_SetColor(32)
+                        gfx_FillCircle(
                     }
                     if (kb_Data[7] & kb_Up && menuid == 2)
                     {
                         menuid = 1;
+                        gfx_SetColor(32)
+
                     }
-                    
+
                     delay(160);
                     if (kb_Data[6] & kb_Clear)
                     {
                         screen = 99;
                     }
-                
-                
-                
-                
+
+
+
+
                 }
             gfx_SwapDraw();
             gfx_FillScreen(0);
