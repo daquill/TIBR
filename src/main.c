@@ -17,9 +17,10 @@ I am new to C
 #include <stdint.h>
 #include <stdio.h>
 #include <fileioc.h>
-#include "gfx/gfx.h"
-
-
+#include "treetibr.h"
+#include "treetibr.c"
+#include "PlayerAvatar.h"
+#include "PlayerAvatar.c"
 
 void main()
 {
@@ -88,18 +89,18 @@ void main()
                     if (kb_Data[7] & kb_Down && menuid == 1)
                     {
                         menuid = 2;
-                        gfx_SetColor(32)
-                        gfx_FillCircle(
+                        gfx_SetColor(32);
+                        gfx_FillCircle(100,100,10);
                     }
                     if (kb_Data[7] & kb_Up && menuid == 2)
                     {
                         menuid = 1;
-                        gfx_SetColor(32)
-
+                        gfx_SetColor(32);
+                        gfx_FillCircle(100,120,10);
                     }
 
                     delay(160);
-                    if (kb_Data[6] & kb_Clear)
+                    if (kb_Data[1] & kb_Mode)
                     {
                         screen = 99;
                     }
