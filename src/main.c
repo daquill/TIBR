@@ -1,15 +1,18 @@
-/* Version History and Notes and Credits
-*/
-
 /*
- *--------------------------------------
- * Program Name:BATROYAL
- * Author: QuillPlayzYT
- * License: -
- * Description: Battle Royale for the TI 84 Plus CE; BE THE FIRST ONE TO GET PARTS TO FIX YOUR SPACESHIP
- *--------------------------------------
-*/
+Before compiling please read these directions / Do's & Dont's
+This program series was made by QuillPlayzYT
+This program is also very self explained
+### A little about me ###
+My Name is Nicholas
+I am new to C
+    -   IF YOU PLAN ON ADDING ON PLEASE PLEASE GIVE ME THE PROPER CREDIT
+### Version History ###
+    -   No Reviewable Version History could be found
 
+
+
+
+*/
 #include <tice.h>
 #include <graphx.h>
 #include <keypadc.h>
@@ -17,57 +20,91 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
-#include "gfx/gfx.h"
 #include <fileioc.h>
+#include "gfx/gfx.h"
+ 
+ 
+ 
 void main()
 {
-    bool loadscenarios = false;
-
-
+    uint8_t screen = 1;
+    int playerx = 20;
+    int playery = 20;
+    int randtreex = randInt(0,320);
+    int randtreey = randInt(0,240);
+    const arrowkey = kb_Data[7];
+    int menuid = 0;
+    bool allowkeypress = true;
     gfx_Begin();
     gfx_SetDrawBuffer();
-
-    do {
-        kb_Scan();
-        gfx_SetTextFGColor(228);
-        gfx_PrintStringXY("Battle Royale",120,100);
-        gfx_SetTextFGColor(187);
-        gfx_PrintStringXY("Pre Release 1.0",116,110);
-        gfx_SetTextFGColor(147);
-        gfx_PrintStringXY("2nd to Play",120,120);
-
-        if ((kb_Data[1] & kb_Mode) && !loadscenarios) 
-        {
+        do {
+            kb_Scan;
             
+            if (screen == 1) {
             gfx_SetTextFGColor(228);
-            gfx_PrintStringXY("BR PR 1.0",0,0);
-            gfx_SetTextFGColor(30);
-            gfx_PrintStringXY("Scenario Loader 1.0",0,10);
-            gfx_SetTextFGColor(40);
-            void *search_pos = NULL;
-            char *name;
-            int8_t y = 30;
-            uint8_t type;
-            int8_t numcount = 0;
-            while ((name = ti_DetectAny(&search_pos, "BRDAT", &type)) != NULL)
-            {
-                if (type == TI_APPVAR_TYPE)
-                {
-                    gfx_PrintStringXY(name,30,y);
-                    gfx_PrintStringXY(">",0,y);
-                    gfx_PrintStringXY(numcount,10,y);
+            gfx_Sprite_NoClip(PlayerAvatar,playerx,playery);
+            gfx_Sprite_NoClip(treetibr,randtreex,randtreey);
 
-                    y+10;
-                    numcount++;
+            
+                if (kb_Data[7] & kb_Left)
+                {
+                    playerx--;
+                }
+                if (kb_Data[7] & kb_Right)
+                {
+                    playerx++;
+                }
+                if (kb_Data[7] & kb_Up)
+                {
+                    playery--;
+                }
+                if (kb_Data[7] & kb_Down)
+                {
+                    playery++;
+                }
+                
+                if (kb_Data[6] & kb_Clear) 
+                {
+                    screen = 2;
+                    menuid = 1;
                 }
             }
             
-        }
-
-
-        gfx_BlitBuffer();
-
- } while (!(kb_Data[6] & kb_Clear));
-
-    gfx_End();
+           
+                if (screen == 2)
+                {
+                    gfx_FillScreen(32);
+                    gfx_SetColor(245);
+                    gfx_FillRectangle_NoClip(320/2-45,240/2-20,100,100);
+                    gfx_SetColor(254);
+                    gfx_FillRectangle_NoClip(130,100,80,10);
+                    gfx_SetTextFGColor(24);
+                    gfx_PrintStringXY("Resume TIBR",131,101);
+                    gfx_FillRectangle_NoClip(130,120,80,10);
+                    gfx_PrintStringXY("Settings - Coming Soon",131,121);
+                    gfx_FillRectangle_NoClip(130,140,80,10);
+                    gfx_PrintStringXY("Press Clear to Quit TIBR",131,141);
+                    if (kb_Data[7] & kb_Down && menuid == 1)
+                    {
+                        menuid = 2;
+                    }
+                    if (kb_Data[7] & kb_Up && menuid == 2)
+                    {
+                        menuid = 1;
+                    }
+                    
+                    delay(160);
+                    if (kb_Data[6] & kb_Clear)
+                    {
+                        screen = 99;
+                    }
+                
+                
+                
+                
+                }
+            gfx_SwapDraw();
+            gfx_FillScreen(0);
+        } while(screen != 99);
+gfx_End();
 }
