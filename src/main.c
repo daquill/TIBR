@@ -17,12 +17,12 @@ I am new to C
 #include <stdint.h>
 #include <stdio.h>
 #include <fileioc.h>
-#include "gfx/gfx.h"
-// All of these files with gfx/ are included in the "gfx" folder
-//#include "gfx/treetibr.h"
-//#include "gfx/treetibr.c"
-//#include "gfx/PlayerAvatar.h"
-//#include "gfx/PlayerAvatar.c"
+
+
+#include "treetibr.h"
+#include "treetibr.c"
+#include "PlayerAvatar.h"
+#include "PlayerAvatar.c"
 
 void main()
 {
@@ -62,11 +62,7 @@ void main()
                     playery++;
                 }
 
-                if (kb_Data[6] & kb_Clear)
-                {
-                    screen = 2;
-                    menuid = 1;
-                }
+
             }
                     gfx_SetTextXY(0,0);
                     gfx_PrintInt(playerx,1);
@@ -75,52 +71,55 @@ void main()
 
                 if (screen == 2)
                 {
+                    
                     gfx_FillScreen(32);
                     gfx_SetColor(245);
-                    gfx_FillRectangle_NoClip(320/2-45,240/2-20,100,100);
+                    gfx_FillRectangle_NoClip(100,120,180,100);
                     gfx_SetColor(254);
                     gfx_FillRectangle_NoClip(130,100,80,10);
                     gfx_SetTextFGColor(24);
-                    gfx_PrintStringXY("Resume TIBR",131,101);
-                    gfx_FillRectangle_NoClip(130,120,80,10);
-                    gfx_PrintStringXY("Settings - Coming Soon",131,121);
-                    gfx_FillRectangle_NoClip(130,140,80,10);
-                    gfx_PrintStringXY("Press Clear to Quit TIBR",131,141);
+                    gfx_PrintStringXY("2nd to Resume TIBR",161,101);
+                    gfx_FillRectangle_NoClip(160,120,80,10);
+                    gfx_PrintStringXY("Mode to change Settings",161,121);
+                    gfx_FillRectangle_NoClip(160,140,80,10);
+                    gfx_PrintStringXY("Press Del to Quit TIBR",131,141);
                     gfx_SetColor(254);
                     gfx_Circle(100,105,10);
                     gfx_Circle(100,125,10);
-                    gfx_SetTextXY(0,0);
-                    gfx_PrintInt(playerx,1);
-                    gfx_SetTextXY(45,0);
-                    gfx_PrintInt(playery,1);
-                    if (kb_Data[7] & kb_Down && menuid == 1)
-                    {
-                        menuid = 2;
-                        gfx_SetColor(32);
-                        gfx_FillCircle(100,100,10);
-                    }
-                    if (kb_Data[7] & kb_Up && menuid == 2)
-                    {
-                        menuid = 1;
-                        gfx_SetColor(32);
-                        gfx_FillCircle(100,120,10);
-                    }
 
-                    delay(160);
-                    if (kb_Data[1] & kb_Mode)
+                    if (kb_Data[1] & kb_Del)
                     {
                         screen = 99;
                     }
-                    
-                    if (kb_Data[6] & kb_Clear) 
+                    delay(160);
+                    if (kb_Data[6] & kb_Clear)
                     {
                         gfx_FillScreen(0);
-                        menuid = 1;
-                        screen = 0;
+                        screen = 1;
+
                     }
+                    if (kb_Data[1] & kb_Mode)
+                    {
+
+                        menuid = 1;
+                        screen = 3;
 
 
 
+                    }
+                }
+            if (screen == 3)
+            {
+                gfx_SetColor(18);
+                gfx_FillRectangle(0,0,90,240);
+                gfx_FillRectangle(230,0,90,240);
+
+
+
+            }
+                if (kb_Data[6] & kb_Clear)
+                {
+                    screen = 2;
                 }
             gfx_SwapDraw();
             gfx_FillScreen(0);
