@@ -17,10 +17,12 @@ I am new to C
 #include <stdint.h>
 #include <stdio.h>
 #include <fileioc.h>
-#include "treetibr.h"
-#include "treetibr.c"
-#include "PlayerAvatar.h"
-#include "PlayerAvatar.c"
+#include "gfx/gfx.h"
+// All of these files with gfx/ are included in the "gfx" folder
+//#include "gfx/treetibr.h"
+//#include "gfx/treetibr.c"
+//#include "gfx/PlayerAvatar.h"
+//#include "gfx/PlayerAvatar.c"
 
 void main()
 {
@@ -66,7 +68,10 @@ void main()
                     menuid = 1;
                 }
             }
-
+                    gfx_SetTextXY(0,0);
+                    gfx_PrintInt(playerx,1);
+                    gfx_SetTextXY(45,0);
+                    gfx_PrintInt(playery,1);
 
                 if (screen == 2)
                 {
@@ -82,10 +87,12 @@ void main()
                     gfx_FillRectangle_NoClip(130,140,80,10);
                     gfx_PrintStringXY("Press Clear to Quit TIBR",131,141);
                     gfx_SetColor(254);
-                    gfx_Circle(100,100,10);
-                    gfx_Circle(100,120,10);
-
-
+                    gfx_Circle(100,105,10);
+                    gfx_Circle(100,125,10);
+                    gfx_SetTextXY(0,0);
+                    gfx_PrintInt(playerx,1);
+                    gfx_SetTextXY(45,0);
+                    gfx_PrintInt(playery,1);
                     if (kb_Data[7] & kb_Down && menuid == 1)
                     {
                         menuid = 2;
@@ -104,7 +111,13 @@ void main()
                     {
                         screen = 99;
                     }
-
+                    
+                    if (kb_Data[6] & kb_Clear) 
+                    {
+                        gfx_FillScreen(0);
+                        menuid = 1;
+                        screen = 0;
+                    }
 
 
 
